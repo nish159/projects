@@ -1,4 +1,4 @@
-﻿int currentYear = DateTime.Now.Year;    
+int currentYear = DateTime.Now.Year;    
 
 Console.WriteLine("Enter your name: ");
 string name = Console.ReadLine();
@@ -12,11 +12,12 @@ if (birthYear <= 1900 || birthYear >= currentYear)
 }
 else
 {
-    calculateAge(name, birthYear, currentYear);
+    int age = calculateAge(birthYear, currentYear);
+    Console.WriteLine($"Hi {name}, you will turn {age} this year!");
 }
 
-static void calculateAge(string name, int birthYear, int currentYear)
+static void calculateAge(int birthYear, int currentYear)
 {
     int age = currentYear - birthYear;
-    Console.WriteLine($"Hi {name}, you will turn {age} this year!");
+    return age;
 }
