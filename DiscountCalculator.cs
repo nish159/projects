@@ -1,4 +1,4 @@
-﻿Console.WriteLine("Enter the price of the item: ");
+Console.WriteLine("Enter the price of the item: ");
 int itemAmount = int.Parse(Console.ReadLine());
 
 Console.WriteLine($"You have entered: {itemAmount}");
@@ -9,7 +9,7 @@ if (itemAmount <= 0)
 }
 else
 {
-    Console.WriteLine("Enter the discount amount");
+    Console.WriteLine("Enter the discount amount: ");
     double discountAmount = double.Parse(Console.ReadLine());
 
     Console.WriteLine($"You have entered: {discountAmount}");
@@ -19,14 +19,14 @@ else
         Console.WriteLine("The discount factor must be greater than 0 and less than 1!");
     }
 
-    calculateDiscount(itemAmount, discountAmount);
+    int salesPrice = calculateDiscount(itemAmount, discountAmount);
+    Console.WriteLine($"Your new total is: {salesPrice}");
 }
 
 
-static void calculateDiscount(int itemAmount, double discountAmount)
+static int calculateDiscount(int itemAmount, double discountAmount)
 {
 
     int salesPrice = (int)(itemAmount - (itemAmount * discountAmount));
-
-    Console.WriteLine($"Your new total is: {salesPrice}");
+    return salesPrice;
 }
