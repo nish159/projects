@@ -16,7 +16,7 @@ else
     Console.WriteLine($"Hi {name}, you will turn {age} this year!");
 }
 
-static void calculateAge(int birthYear, int currentYear)
+static int calculateAge(int birthYear, int currentYear)
 {
     int age = currentYear - birthYear;
     return age;
