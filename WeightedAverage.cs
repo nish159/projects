@@ -1,33 +1,48 @@
+int totalPointsReceived = 0;
+int totalSum = 0;
+
 Console.WriteLine("Enter the number of homework assigments: ");
 int homeworkAssignments = int.Parse(Console.ReadLine());
-
-Console.WriteLine("Points received for homework assignments: ");
-int points = int.Parse(Console.ReadLine());
-
-Console.WriteLine("Total points available for homework assignments: ");
-int totalPoints = int.Parse(Console.ReadLine());
 
 if (homeworkAssignments <= 0)
 {
     Console.WriteLine("number of assignments must be greater than 1!");
+    return;
 }
-else if (points <= 0)
+
+for (int i = 1; i <= homeworkAssignments; i++)
 {
-    Console.WriteLine("Received points must be a positive number!");
-}
-else
-{
+    Console.WriteLine($"Points received for homework assignment {i}: ");
+    int points = int.Parse(Console.ReadLine());
+
+    if (points <= 0)
+    {
+        Console.WriteLine("Received points must be a positive number!");
+        return;
+    }
+
+    Console.WriteLine($"Total points available for homework assignments {i}: ");
+    int totalPoints = int.Parse(Console.ReadLine());
+
     if (totalPoints <= 0)
     {
         Console.WriteLine("Total points must be a positive number!");
+        return;
     }
 
-    double average = calculateAverage(points, totalPoints);
-    Console.WriteLine($"Your weighted average is: {average}");
+    totalPointsReceived = points + totalPointsReceived;
+    totalSum = totalPoints + totalSum;
+
+    Console.WriteLine(totalPointsReceived + "/" + totalSum);
 }
+
+double average = calculateAverage(totalPointsReceived, totalSum);
+Console.WriteLine($"Your weighted average is: {average}");
+
 
 static double calculateAverage(int points, int totalPoints)
 {
-    double average = points / totalPoints * 100;
+    // As long as one number is a double it will print a double number
+    double average = points * 1.0 / totalPoints * 100;
     return average;
 }
