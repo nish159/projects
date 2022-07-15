@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Drawing.Imaging;// add this for the JPG compressor
 
 namespace SnakeGame
 {
@@ -87,11 +88,40 @@ namespace SnakeGame
 
         private void TakeSnapShot(object sender, EventArgs e)
         {
+            // create new lable to add to the picture box
+            Label caption = new Label();
+            caption.Text = "I scored: " + score + " and my highscore is " + highScore + " on the snake game";
+            caption.Font = new Font("Ariel", 12, FontStyle.Bold);
+            caption.ForeColor = Color.LightBlue;
+            caption.AutoSize = false;
+            caption.Width = picCanvas.Width;
+            caption.Height = 30;
+            caption.TextAlign = ContentAlignment.MiddleCenter;
+            picCanvas.Controls.Add(caption);
 
+            // create a new save dialog box
+            SaveFileDialog dialog = new SaveFileDialog();
+            dialog.FileName = "Snake Game Snapshot";
+            dialog.DefaultExt = "jpg";
+            dialog.Filter = "JPG Image File | *.jpg";
+            dialog.ValidateNames = true;
+
+            // action when you click OK
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                // size of the photo
+                int width = Convert.ToInt32(picCanvas.Width);
+                int height = Convert.ToInt32(picCanvas.Height);
+                Bitmap bmp = new Bitmap(width, height);
+                picCanvas.DrawToBitmap(bmp, new Rectangle(0,0, width, height));
+                bmp.Save(dialog.FileName, ImageFormat.Jpeg);
+                picCanvas.Controls.Remove(caption);
+            }
         }
 
         private void GameTimerEvent(object sender, EventArgs e)
         {
+            // you can change the interval of the game timer to make the game faster or slower
             // setting directions 
             if (goLeft)
             {
@@ -155,6 +185,14 @@ namespace SnakeGame
                     if (Snake[i].X == food.X && Snake[i].Y == food.Y)
                     {
                         EatFood();
+                    }
+
+                    for (int j = 1; j < Snake.Count; j++)
+                    {
+                        if (Snake[i].X == Snake[j].X && Snake[i].Y == Snake[j].Y)
+                        {
+                            GameOver();
+                        }
                     }
                 }
                 else
@@ -239,7 +277,7 @@ namespace SnakeGame
         {
             score += 1;
 
-            scr.Text = "Score: " + score;
+            scr.Text = "SCORE: " + score;
 
             Circle body = new Circle
             {
@@ -254,7 +292,18 @@ namespace SnakeGame
 
         private void GameOver()
         {
+            Timer.Stop();
+            startButton.Enabled = true;
+            snapButton.Enabled = true;
 
+            if (score > highScore)
+            {
+                highScore = score;
+
+                hghscr.Text = "HIGH SCORE: " + Environment.NewLine + highScore;
+                hghscr.ForeColor = Color.Maroon;
+                hghscr.TextAlign = ContentAlignment.MiddleCenter;
+            }
         }
     }
 }
