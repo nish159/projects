@@ -31,7 +31,7 @@ else
     // 0, 2, 4, 6
     for( int i = 0; i <=n; i+= 2)
     {
-        // Don't pritn a comma before the first number
+        // Don't print a comma before the first number
         if(i == 0)
         {
             Console.Write(i);
