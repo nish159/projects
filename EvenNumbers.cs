@@ -29,7 +29,7 @@ else
     Console.WriteLine("=====================");
 
     // 0, 2, 4, 6
-    for( int i = 0; i <=n; i+= 2)
+    for( int i = 0; i <=n; i += 2)
     {
         // Don't print a comma before the first number
         if(i == 0)
