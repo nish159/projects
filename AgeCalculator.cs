@@ -1,8 +1,8 @@
 /*
 Write a program that calculates how old a person will turn this year. The program should ask the user to input 
 their name and birth year. 
-If the user's birth year is 1990, the age is calculated as follows
-                                age = 2022 - birth year = 2018 -1990
+If the user's birth year is 1990, the age is calculated as follows:
+                                          age = 2022 - birth year = 2018 -1990
 Requirements
 Birth year needs to be between 1900 and 2022
 If the birth year does not meet those conditions, the program should print out the following text:
