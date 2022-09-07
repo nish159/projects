@@ -82,4 +82,30 @@ Console.WriteLine("=====================");
             Console.Write(", " + i);
         }
     }
+    
+  // ask user to enter a positive integer
+Console.WriteLine("Enter a positive integer: ");
+int n = int.Parse(Console.ReadLine());
+Console.WriteLine("");
+
+// while anything is less than 0, it will execute the following code inside of the curly braces
+while (n < 0)
+{
+    Console.WriteLine($"{n} is not a valid number, please enter a positive integer: ");
+    n = int.Parse(Console.ReadLine());
+    Console.WriteLine("");
+}
+
+// if n > 0 it will execute the following code
+for (int i = 0; i <= n; i += 2)
+{
+    if (i == n || i == n - 1)
+    {
+        Console.Write(i);
+    }
+    else
+    {
+        Console.Write(i + ", ");
+    }
+}
 */
