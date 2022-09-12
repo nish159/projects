@@ -154,6 +154,9 @@ Your total is 21.00 out of 29.00, or 72.41%.
 */
 
 int homeworkAssignments = 0;
+int totalPointsReceived = 0;
+int totalAvailablePoints = 0;
+int weightedAverage;
 
 Console.WriteLine("Enter the number of homework assignments: ");
 int numberOfAssignments = int.Parse(Console.ReadLine());
@@ -191,4 +194,17 @@ for (int i = 0; i < numberOfAssignments; i++)
         Console.WriteLine("Received score cannot exceed total available points!");
         return;
     }
+    else
+    {
+        totalPointsReceived += pointsReceived;
+        totalAvailablePoints += totalPoints;
+    }
+}
+
+Average(totalPointsReceived, totalAvailablePoints);
+
+void Average(int totalPointsReceived, int totalAvailablePoints)
+{
+    double weightedAverage = (totalPointsReceived * 1.0) / totalAvailablePoints * 100;
+    Console.WriteLine(weightedAverage);
 }
